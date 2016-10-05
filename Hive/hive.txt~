@@ -1,0 +1,123 @@
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name,sum(total) 
+from data
+group by name;
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/successratio' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name,(total/participant)*100
+from data
+where year = '2012';
+
+load data local inpath '/home/cloudera/Downloads/ll.csv' into table position;
+
+create table position(latitude string,longitude string,name string)
+row format delimited 
+fields terminated by ',';
+
+select a.name,sum(total),b.longitude,b.latitude
+from data a join orders position b
+on
+(a.name = b.name)
+group by a.name;
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select a.name,sum(a.total),b.longitude,b.latitude
+from data a, position b
+where
+a.name = b.name
+group by a.name,b.longitude,b.latitude;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/GBR' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name, total
+from data
+where
+name = "Great Britain";
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/US' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name, total
+from data
+where
+name = "United States";
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/China' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name, total
+from data
+where
+name = "China";
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/Greece' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name, total
+from data
+where
+name = "Greece";
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/Australia' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+select name, total
+from data
+where
+name = "Australia";
+
+create table data(names string, year int, participant int, male int,female int, sports int,gold int,silver int,bronze int,total int)
+row format delimited 
+fields terminated by ',';
+
+
+load data local inpath '/home/cloudera/Term_project/countries/sorted.csv' into table data;
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/participants/Greece' 
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+select name, year,participant
+from data 
+where name = "Greece"; 
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/participants/Australia' 
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+select name, year,participant
+from data 
+where name = "Australia"; 
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/participants/US' 
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+select name, year,participant
+from data 
+where name = "United States"; 
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/participants/GB' 
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+select name, year,participant
+from data 
+where name = "Great Britain"; 
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/data/participants/China' 
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+select name, year,participant
+from data 
+where name = "China"; 
+
+
