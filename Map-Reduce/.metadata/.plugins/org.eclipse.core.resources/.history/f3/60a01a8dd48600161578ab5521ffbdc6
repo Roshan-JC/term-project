@@ -1,0 +1,22 @@
+package com.journaldev.mongodb.main;
+import java.net.UnknownHostException;
+import com.journaldev.mongodb.model.User;
+import com.journaldev.mongodb.model.User;
+import com.mongodb.BasicDBObjectBuilder;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.WriteResult
+
+
+
+public class connect {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
