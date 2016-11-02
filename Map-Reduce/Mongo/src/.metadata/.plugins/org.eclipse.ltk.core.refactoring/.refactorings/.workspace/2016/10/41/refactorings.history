@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;Mapreduce&apos;" deleteContents="false" description="Delete resource &apos;Mapreduce&apos;" element1="/Mapreduce" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1475471828884"/>
-</session>
